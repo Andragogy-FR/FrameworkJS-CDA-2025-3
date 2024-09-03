@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import reactLogo from './assets/react.svg'
 import WelcomeMessage from './Components/UX/WelcomeMessage'
 import Button from './Components/UX/Button'
 import styles from './App.module.css'
@@ -7,7 +6,6 @@ import './App.scss'
 
 
 function App() {
-  const [count, setCount] = useState(0)
   const [data, setData] = useState({})
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(false)
