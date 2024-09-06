@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken'
 const privateKey = 'HelloThere'
 
-const createToken = (req, res, next) => {
+export const createToken = (req, res, next) => {
     if(req?.user?.username && req?.user?.password){
         const token = jwt.sign({
             username : req.user.username,
@@ -13,7 +13,7 @@ const createToken = (req, res, next) => {
     else res.status(403).json({login: false, message:'argument(s) missing'})
 }
 
-const sendToken = (req, res) => console.log(req?.token) && typeof req?.token === "string" 
+export const sendToken = (req, res) => console.log(req?.token) && typeof req?.token === "string" 
     ? res.json({token : true, value : req.token})
     : res.status(500).json({token : false, login: true, message:'Problem Server'})
 
@@ -27,9 +27,3 @@ REQuête => middleware NEXT =>                create Token
              Connexion       => ids mauvais => RESponse
 
 */
-const tokens = {
-    createToken,
-    sendToken
-}
-
-export default tokens

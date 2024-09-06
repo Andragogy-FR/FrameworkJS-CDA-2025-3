@@ -5,7 +5,11 @@ import helmet from 'helmet'
 import morgan from 'morgan'
 import bodyParser from 'body-parser'
 import api from './router/api.js'
+import swaggerJSDoc from 'swagger-jsdoc'
+import swaggerUi from 'swagger-ui-express'
 import expressStaticGzip from 'express-static-gzip'
+import './database/connexion.js'
+import { cfSwagger } from './configs.js'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -23,6 +27,7 @@ app
 //.use(express.json())
 .use(morgan(':remote-addr - :method :url :status :res[content-length] - :response-time ms'))
 .use('/api', api)
+.use('/docs/api', swaggerUi.serve, swaggerUi.setup(swaggerJSDoc(cfSwagger)))
 .use(expressStaticGzip(
     path.join(__dirname, "../client/dist"),{
         enableBrotli: false

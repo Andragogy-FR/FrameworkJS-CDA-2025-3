@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import WelcomeMessage from './Components/UX/WelcomeMessage'
 import Button from './Components/UX/Button'
 import styles from './App.module.css'
+import { Link } from 'react-router-dom'
 import './App.scss'
 
 
@@ -49,8 +50,9 @@ function App() {
       {loading && <p className={styles.welcomeText}>Advice en cours de chargement... - musique d'ascenseur</p>}
       {!loading && error && <p>Erreur : la récupération a subi un EMOTIONAL DAMAGE !</p>}
       {!loading && !error && <p className={styles.welcomeText}>{data}</p>}
+      <Link to='/welcome'><Button>Appuye sur moi</Button></Link>
     </>
   )
 }
-
+// .env.local => .env.production / .env.developpement => .env
 export default App
